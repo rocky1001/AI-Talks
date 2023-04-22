@@ -1,0 +1,13 @@
+credentials:
+  usernames:
+    admin:
+      email: admin@lsherb.com
+      name: admin
+      password: $2b$12$a1wSmabd4mtmlwl3t2Dyyeulz7zi.zMCPffkhCHvMaVu0YnCfyZV.
+cookie:
+  expiry_days: 3
+  key: lsherb-chatgpt
+  name: lsherb
+preauthorized:
+  emails:
+    - melsby@gmail.com

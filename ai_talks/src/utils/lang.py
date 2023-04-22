@@ -10,9 +10,6 @@ class Locale:
     title: str
     language: str
     lang_code: str
-    donates: str
-    donates1: str
-    donates2: str
     chat_placeholder: str
     chat_run_btn: str
     chat_clear_btn: str
@@ -28,52 +25,31 @@ class Locale:
     radio_text1: str
     radio_text2: str
     stt_placeholder: str
-    footer_title: str
-    footer_option0: str
-    footer_option1: str
-    footer_option2: str
-    footer_chat: str
-    footer_channel: str
-    responsibility_denial: str
-    donates_info: str
     empty_api_handler: str
 
 
 AI_ROLE_OPTIONS_EN = [
     "helpful assistant",
-    "code assistant",
-    "code reviewer",
-    "text improver",
-    "cinema expert",
-    "sport expert",
-    "online games expert",
-    "food recipes expert",
     "English grammar expert",
     "friendly and helpful teaching assistant",
-    "laconic assistant",
-    "helpful, pattern-following assistant",
     "translate corporate jargon into plain English",
+    "text improver",
+    "code assistant",
+    "code reviewer",
 ]
 
-AI_ROLE_OPTIONS_RU = [
-    "ассистент, который готов помочь",
-    "ассистент программиста",
-    "рецензент кода программиста",
-    "эксперт по улучшению текста",
-    "эксперт по кинематографу",
-    "эксперт в области спорта",
-    "эксперт в онлайн-играх",
-    "эксперт по рецептам блюд",
-    "эксперт по английской грамматике",
-    "эксперт по русской грамматике",
-    "дружелюбный и полезный помощник преподавателя",
-    "лаконичный помощник",
-    "полезный помощник, следующий шаблонам",
-    "переводчик корпоративного жаргона на простой русский",
+AI_ROLE_OPTIONS_CN = [
+    "私人助理",
+    "英语语法专家",
+    "教学助理",
+    "英语翻译官",
+    "文字助理",
+    "代码大师",
+    "代码reviewer",
 ]
 
-readme_url = "https://github.com/dKosarevsky/AI-Talks#readme"
-ai_talks_url = "https://ai-talks.streamlit.app/"
+readme_url = ""
+ai_talks_url = ""
 
 en = Locale(
     ai_role_options=AI_ROLE_OPTIONS_EN,
@@ -82,9 +58,6 @@ en = Locale(
     title="AI Talks",
     language="English",
     lang_code="en",
-    donates="Donates",
-    donates1="Russia",
-    donates2="World",
     chat_placeholder="Start Your Conversation With AI:",
     chat_run_btn="Ask",
     chat_clear_btn="Clear",
@@ -92,7 +65,7 @@ en = Locale(
     speak_btn="Push to Speak",
     input_kind="Input Kind",
     input_kind_1="Text",
-    input_kind_2="Voice [test mode]",
+    input_kind_2="Voice[test]",
     select_placeholder1="Select Model",
     select_placeholder2="Select Role",
     select_placeholder3="Create Role",
@@ -100,73 +73,35 @@ en = Locale(
     radio_text1="Select",
     radio_text2="Create",
     stt_placeholder="To Hear The Voice Of AI Press Play",
-    footer_title="Support & Feedback",
-    footer_option0="Chat",
-    footer_option1="Info",
-    footer_option2="Donate",
-    footer_chat="AI Talks Chat",
-    footer_channel="AI Talks Channel",
-    responsibility_denial="""
-        `AI Talks` uses the `Open AI` API to interact with `ChatGPT`, an AI that generates information.
-        Please note that neural network responses may not be reliable, inaccurate or irrelevant.
-        We are not responsible for any consequences associated with the use or reliance on the information provided.
-        Use the received data at your discretion.
-    """,
-    donates_info="""
-        `AI Talks` collects donations solely for the purpose of paying for the `Open AI` API.
-        This allows you to provide access to communication with AI for all users.
-        Support us for joint development and interaction with the intelligence of the future!
-    """,
     empty_api_handler=f"""
         API key not found. Create `.streamlit/secrets.toml` with your API key.
         See [README.md]({readme_url}) for instructions or use the original [AI Talks]({ai_talks_url}).
     """,
 )
-ru = Locale(
-    ai_role_options=AI_ROLE_OPTIONS_RU,
-    ai_role_prefix="Вы девушка",
-    ai_role_postfix="Отвечай максимально лаконично.",
-    title="Разговорчики с ИИ",
-    language="Russian",
-    lang_code="ru",
-    donates="Поддержать Проект",
-    donates1="Россия",
-    donates2="Остальной Мир",
-    chat_placeholder="Начните Вашу Беседу с ИИ:",
-    chat_run_btn="Спросить",
-    chat_clear_btn="Очистить",
-    chat_save_btn="Сохранить",
-    speak_btn="Нажмите и Говорите",
-    input_kind="Вид ввода",
-    input_kind_1="Текст",
-    input_kind_2="Голос [тестовый режим]",
-    select_placeholder1="Выберите Модель",
-    select_placeholder2="Выберите Роль",
-    select_placeholder3="Создайте Роль",
-    radio_placeholder="Взаимодествие с Ролью",
-    radio_text1="Выбрать",
-    radio_text2="Создать",
-    stt_placeholder="Чтобы Услышать ИИ Нажми Кнопку Проигрывателя",
-    footer_title="Поддержка и Обратная Связь",
-    footer_option0="Чат",
-    footer_option1="Инфо",
-    footer_option2="Донаты",
-    footer_chat="Чат Разговорчики с ИИ",
-    footer_channel="Канал Разговорчики с ИИ",
-    responsibility_denial="""
-        `Разговорчики с ИИ` использует API `Open AI` для взаимодействия с `ChatGPT`, ИИ, генерирующим информацию.
-        Пожалуйста, учтите, что ответы нейронной сети могут быть недостоверными, неточными или нерелевантными.
-        Мы не несём ответственности за любые последствия,
-        связанные с использованием или доверием к информации сгенерированныой нейронной сетью.
-        Используйте полученные данные генераций на своё усмотрение.
-    """,
-    donates_info="""
-        `AI Talks` собирает донаты исключительно с целью оплаты API `Open AI`.
-        Это позволяет обеспечить доступ к общению с ИИ для всех желающих пользователей.
-        Поддержите нас для совместного развития и взаимодействия с интеллектом будущего!
-    """,
+
+cn = Locale(
+    ai_role_options=AI_ROLE_OPTIONS_CN,
+    ai_role_prefix="你是一名女性助理",
+    ai_role_postfix="回答的尽可能的耐心",
+    title="AI Talks",
+    language="中文",
+    lang_code="cn",
+    chat_placeholder="开始对话吧",
+    chat_run_btn="发送",
+    chat_clear_btn="清理",
+    chat_save_btn="保存",
+    speak_btn="按下说话",
+    input_kind="输入类型",
+    input_kind_1="文本",
+    input_kind_2="语音[测试中]",
+    select_placeholder1="选择模型",
+    select_placeholder2="选择角色",
+    select_placeholder3="创建角色",
+    radio_placeholder="角色反应",
+    radio_text1="选择",
+    radio_text2="创建",
+    stt_placeholder="按下Play听语音",
     empty_api_handler=f"""
-        Ключ API не найден. Создайте `.streamlit/secrets.toml` с вашим ключом API.
-        Инструкции см. в [README.md]({readme_url}) или используйте оригинальный [AI Talks]({ai_talks_url}).
+        API key not found. Create `.streamlit/secrets.toml` with your API key.
     """,
 )
