@@ -16,6 +16,7 @@ def create_gpt_completion(ai_model: str, messages: List[dict]) -> dict:
         model=ai_model,
         messages=messages,
         temperature=0.7,
+        # stream=True,
     )
     logging.info(f"{completion=}")
     return completion

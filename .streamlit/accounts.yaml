@@ -4,6 +4,10 @@ credentials:
       email: admin@lsherb.com
       name: admin
       password: $2b$12$a1wSmabd4mtmlwl3t2Dyyeulz7zi.zMCPffkhCHvMaVu0YnCfyZV.
+    LS001:
+      email: info@lsherb.com
+      name: LS001
+      password: $2b$12$PILOHjD.0NB8pnTyl7r.1uulTLjIIJZ584eTpVLetx1bHXmZQlVrq 
 cookie:
   expiry_days: 3
   key: lsherb-chatgpt
