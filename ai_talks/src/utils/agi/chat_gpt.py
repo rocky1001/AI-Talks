@@ -6,7 +6,7 @@ import streamlit as st
 
 
 @st.cache_data()
-def create_gpt_completion(ai_model: str, messages: List[dict]) -> dict:
+def gpt_thinking(ai_model: str, messages: List[dict]) -> dict:
     try:
         openai.api_key = st.secrets.api_credentials.api_key
     except (KeyError, AttributeError):

@@ -6,7 +6,7 @@ import yaml
 from streamlit_option_menu import option_menu
 from yaml.loader import SafeLoader
 
-from src.utils.conversation import get_user_input, show_chat_buttons, show_conversation
+from src.utils.conversation import show_text_input, show_chat_buttons, show_conversation
 from src.utils.lang import en, cn
 
 # --- PATH SETTINGS ---
@@ -33,55 +33,67 @@ st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
 
 
 def chat() -> None:
+    st.session_state.locale = en
     # sidebar area
     with st.sidebar:
         st.markdown(f'### Welcome *{name}*')
-        authenticator.logout('Logout', 'sidebar')
         st.divider()
+        authenticator.logout('Logout', 'sidebar')
 
-        st.selectbox(label=st.session_state.locale.select_placeholder1, key="model",
-                     options=AI_MODEL_OPTIONS)
-        st.session_state.input_kind = st.radio(
-            label=st.session_state.locale.input_kind,
-            options=(st.session_state.locale.input_kind_1, st.session_state.locale.input_kind_2),
-            horizontal=True,
-        )
-        role_kind = st.radio(
-            label=st.session_state.locale.radio_placeholder,
-            options=(st.session_state.locale.radio_text1, st.session_state.locale.radio_text2),
-            horizontal=True,
-        )
-        match role_kind:
-            case st.session_state.locale.radio_text1:
-                st.selectbox(label=st.session_state.locale.select_placeholder2, key="role",
-                             options=st.session_state.locale.ai_role_options)
-            case st.session_state.locale.radio_text2:
-                st.text_input(label=st.session_state.locale.select_placeholder3, key="role")
+        # st.session_state.input_kind = st.radio(
+        #     label=st.session_state.locale.input_kind,
+        #     options=(st.session_state.locale.input_kind_1, st.session_state.locale.input_kind_2),
+        #     horizontal=True,
+        # )
+        # role_kind = st.radio(
+        #     label=st.session_state.locale.radio_placeholder,
+        #     options=(st.session_state.locale.radio_text1, st.session_state.locale.radio_text2),
+        #     horizontal=True,
+        # )
+        # match role_kind:
+        #     case st.session_state.locale.radio_text1:
+        #         st.selectbox(label=st.session_state.locale.select_placeholder2, key="role",
+        #                      options=st.session_state.locale.ai_role_options)
+        #     case st.session_state.locale.radio_text2:
+        #         st.text_input(label=st.session_state.locale.select_placeholder3, key="role")
 
     # main area
-    selected_lang = option_menu(
-        menu_title=None,
-        options=[LANG_EN, LANG_CN, ],
-        icons=["globe2", "translate"],
-        menu_icon="cast",
-        default_index=0,
-        orientation="horizontal",
-    )
+    # selected_lang = option_menu(
+    #     menu_title=None,
+    #     options=[LANG_EN, LANG_CN, ],
+    #     icons=["globe2", "translate"],
+    #     menu_icon="cast",
+    #     default_index=0,
+    #     orientation="horizontal",
+    # )
+    # match selected_lang:
+    #     case "En":
+    #         st.session_state.locale = en
+    #     case "中文":
+    #         st.session_state.locale = cn
+    #     case _:
+    #         st.session_state.locale = en
+    # st.markdown(f"<h1 style='text-align: center;'>{st.session_state.locale.title}</h1>", unsafe_allow_html=True)
 
-    match selected_lang:
-        case "En":
-            st.session_state.locale = en
-        case "中文":
-            st.session_state.locale = cn
-        case _:
-            st.session_state.locale = en
-    st.markdown(f"<h1 style='text-align: center;'>{st.session_state.locale.title}</h1>", unsafe_allow_html=True)
+    talks, translates = st.tabs(["🤖 Talks", "🌐 Translates"])
 
-    if st.session_state.user_text:
-        show_conversation()
-        st.session_state.user_text = ""
-    get_user_input()
-    show_chat_buttons()
+    with talks:
+        talks.subheader("Talks")
+
+        with st.expander("setting"):
+            st.selectbox(label=st.session_state.locale.select_placeholder1, key="model",
+                         options=AI_MODEL_OPTIONS)
+            st.selectbox(label=st.session_state.locale.select_placeholder2, key="role",
+                         options=st.session_state.locale.ai_role_options)
+
+        if st.session_state.user_text:
+            show_conversation()
+            st.session_state.user_text = ""
+        show_text_input()
+        show_chat_buttons()
+
+    with translates:
+        translates.subheader("Translates")
 
 
 if __name__ == "__main__":

@@ -4,8 +4,7 @@ from requests.exceptions import TooManyRedirects
 from streamlit_chat import message
 
 from src.utils.agi.bard import BardChat
-from src.utils.agi.chat_gpt import create_gpt_completion
-from src.utils.stt import show_voice_input
+from src.utils.agi.chat_gpt import gpt_thinking
 from src.utils.tts import show_audio_player
 
 
@@ -18,16 +17,6 @@ def clear_chat() -> None:
 
 def show_text_input() -> None:
     st.text_area(label=st.session_state.locale.chat_placeholder, value=st.session_state.user_text, key="user_text")
-
-
-def get_user_input():
-    match st.session_state.input_kind:
-        case st.session_state.locale.input_kind_1:
-            show_text_input()
-        case st.session_state.locale.input_kind_2:
-            show_voice_input()
-        case _:
-            show_text_input()
 
 
 def show_chat_buttons() -> None:
@@ -50,14 +39,14 @@ def show_chat(ai_content: str, user_text: str) -> None:
         st.session_state.generated.append(ai_content)
     if st.session_state.generated:
         for i in range(len(st.session_state.generated)):
-            message(st.session_state.past[i], is_user=True, key=str(i) + "_user", avatar_style="micah")
-            message("", key=str(i))
-            st.markdown(st.session_state.generated[i])
+            message(st.session_state.past[i], is_user=True, key=str(i) + "_user", avatar_style="fun-emoji")
+            message(st.session_state.generated[i], key=str(i))
+            # st.markdown(st.session_state.generated[i])
 
 
 def show_gpt_conversation() -> None:
     try:
-        completion = create_gpt_completion(st.session_state.model, st.session_state.messages)
+        completion = gpt_thinking(st.session_state.model, st.session_state.messages)
         ai_content = completion.get("choices")[0].get("message").get("content")
         st.session_state.messages.append({"role": "assistant", "content": ai_content})
         if ai_content:

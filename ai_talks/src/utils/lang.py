@@ -30,22 +30,18 @@ class Locale:
 
 AI_ROLE_OPTIONS_EN = [
     "helpful assistant",
-    "English grammar expert",
+    "english grammar expert",
     "friendly and helpful teaching assistant",
     "translate corporate jargon into plain English",
     "text improver",
-    "code assistant",
-    "code reviewer",
 ]
 
 AI_ROLE_OPTIONS_CN = [
-    "私人助理",
+    "助理",
     "英语语法专家",
     "教学助理",
-    "英语翻译官",
-    "文字助理",
-    "代码大师",
-    "代码reviewer",
+    "英语翻译",
+    "文字优化",
 ]
 
 readme_url = ""
@@ -53,7 +49,7 @@ ai_talks_url = ""
 
 en = Locale(
     ai_role_options=AI_ROLE_OPTIONS_EN,
-    ai_role_prefix="You are a female",
+    ai_role_prefix="You are an assistant",
     ai_role_postfix="Answer as concisely as possible.",
     title="AI Talks",
     language="English",
