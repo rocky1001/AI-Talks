@@ -3,11 +3,10 @@ from pathlib import Path
 import streamlit as st
 import streamlit_authenticator as stauth
 import yaml
-from streamlit_option_menu import option_menu
 from yaml.loader import SafeLoader
 
-from src.utils.conversation import show_text_input, show_chat_buttons, show_conversation
-from src.utils.lang import en, cn
+from src.conversation import show_text_input, show_chat_buttons, show_conversation
+from src.lang import en
 
 # --- PATH SETTINGS ---
 current_dir: Path = Path(__file__).parent if "__file__" in locals() else Path.cwd()

@@ -1,11 +1,10 @@
 import streamlit as st
 from openai.error import InvalidRequestError, OpenAIError
 from requests.exceptions import TooManyRedirects
+from src.agi.bard import BardChat
+from src.agi.chat_gpt import gpt_thinking
+from src.tts import show_audio_player
 from streamlit_chat import message
-
-from src.utils.agi.bard import BardChat
-from src.utils.agi.chat_gpt import gpt_thinking
-from src.utils.tts import show_audio_player
 
 
 def clear_chat() -> None:
