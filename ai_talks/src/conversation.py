@@ -3,8 +3,30 @@ from openai.error import InvalidRequestError, OpenAIError
 from requests.exceptions import TooManyRedirects
 from src.agi.bard import BardChat
 from src.agi.chat_gpt import gpt_thinking
+from src.trans.trans import translate
 from src.tts import show_audio_player
 from streamlit_chat import message
+
+TRANS_LANG_OPTIONS = {
+    "en-US": "ENGLISH_AMERICAN",
+    "en-GB": "ENGLISH_BRITISH",
+    "zh": "中文",
+    "nl": "DUTCH",
+    "fr": "FRENCH",
+    "de": "GERMAN",
+    "it": "ITALIAN",
+    "ja": "JAPANESE",
+    "ko": "KOREAN",
+    "ru": "RUSSIAN",
+    "es": "SPANISH",
+    "sv": "SWEDISH",
+    "tr": "TURKISH",
+    "uk": "UKRAINIAN",
+}
+
+
+def format_func(option):
+    return TRANS_LANG_OPTIONS[option]
 
 
 def clear_chat() -> None:
@@ -12,6 +34,7 @@ def clear_chat() -> None:
     st.session_state.past = []
     st.session_state.messages = []
     st.session_state.user_text = ""
+    st.session_state.trans_src = ""
 
 
 def show_text_input() -> None:
@@ -86,3 +109,14 @@ def show_conversation() -> None:
         show_bard_conversation()
     else:
         show_gpt_conversation()
+
+
+def show_translation() -> None:
+    st.text_area(label=st.session_state.locale.trans_placeholder, value=st.session_state.trans_src, key="trans_src")
+    c1, c2 = st.columns(2)
+    c1.selectbox(label="lang", label_visibility="collapsed", key="trans_dst_lang", options=list(TRANS_LANG_OPTIONS),
+                 format_func=format_func)
+
+    if c2.button(label=st.session_state.locale.trans_run_btn):
+        trans_dst = translate(st.session_state.trans_src, st.session_state.trans_dst_lang)
+        st.text_area(label=st.session_state.locale.trans_placeholder, value=trans_dst)

@@ -5,7 +5,7 @@ import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
 
-from src.conversation import show_text_input, show_chat_buttons, show_conversation
+from src.conversation import show_text_input, show_chat_buttons, show_conversation, show_translation
 from src.lang import en
 
 # --- PATH SETTINGS ---
@@ -31,7 +31,7 @@ AI_MODEL_OPTIONS: list[str] = [
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
 
 
-def chat() -> None:
+def main() -> None:
     st.session_state.locale = en
     # sidebar area
     with st.sidebar:
@@ -93,6 +93,7 @@ def chat() -> None:
 
     with translates:
         translates.subheader("Translates")
+        show_translation()
 
 
 if __name__ == "__main__":
@@ -133,5 +134,7 @@ if __name__ == "__main__":
             st.session_state.user_text = ""
         if "input_kind" not in st.session_state:
             st.session_state.input_kind = st.session_state.locale.input_kind_1
+        if "trans_src" not in st.session_state:
+            st.session_state.trans_src = ""
 
-        chat()
+        main()

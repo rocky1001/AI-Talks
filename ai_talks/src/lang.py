@@ -11,9 +11,11 @@ class Locale:
     language: str
     lang_code: str
     chat_placeholder: str
+    trans_placeholder: str
     chat_run_btn: str
     chat_clear_btn: str
     chat_save_btn: str
+    trans_run_btn: str
     speak_btn: str
     input_kind: str
     input_kind_1: str
@@ -21,6 +23,7 @@ class Locale:
     select_placeholder1: str
     select_placeholder2: str
     select_placeholder3: str
+    trans_select_placeholder: str
     radio_placeholder: str
     radio_text1: str
     radio_text2: str
@@ -55,9 +58,11 @@ en = Locale(
     language="English",
     lang_code="en",
     chat_placeholder="Start Your Conversation With AI:",
+    trans_placeholder="Input Your Translation Text:",
     chat_run_btn="Ask",
     chat_clear_btn="Clear",
     chat_save_btn="Save",
+    trans_run_btn="Translate to",
     speak_btn="Push to Speak",
     input_kind="Input Kind",
     input_kind_1="Text",
@@ -65,6 +70,7 @@ en = Locale(
     select_placeholder1="Select Model",
     select_placeholder2="Select Role",
     select_placeholder3="Create Role",
+    trans_select_placeholder="Select Language",
     radio_placeholder="Role Interaction",
     radio_text1="Select",
     radio_text2="Create",
@@ -83,9 +89,11 @@ cn = Locale(
     language="中文",
     lang_code="zh",
     chat_placeholder="开始对话吧",
+    trans_placeholder="开始翻译吧",
     chat_run_btn="发送",
     chat_clear_btn="清理",
     chat_save_btn="保存",
+    trans_run_btn="翻译为",
     speak_btn="按下说话",
     input_kind="输入类型",
     input_kind_1="文本",
@@ -93,6 +101,7 @@ cn = Locale(
     select_placeholder1="选择模型",
     select_placeholder2="选择角色",
     select_placeholder3="创建角色",
+    trans_select_placeholder="选择语言",
     radio_placeholder="角色反应",
     radio_text1="选择",
     radio_text2="创建",
